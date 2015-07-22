@@ -81,3 +81,5 @@ Excuse my awful bash scripting. The errors can be ignored.
 To list running containers: "docker ps"
 
 When you are finished with your container, you can kill it: "docker stop 19f"
+
+Big thanks to the Hortonworks/SequenceIQ team. Their own [docker-ambari repo](https://github.com/sequenceiq/docker-ambari) was the basis for this effort.
