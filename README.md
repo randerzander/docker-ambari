@@ -1,6 +1,6 @@
 **Note**: The guide below assumes you've already setup Docker in your environment. See [boot2docker](https://docs.docker.com/installation/mac/) install instructions for help.
 
-To build the dev23 container image:
+To build the dev23 container image (see the script in Dockerfile):
 ```
 docker build -t dev23 .
 ```
