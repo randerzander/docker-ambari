@@ -77,3 +77,7 @@ Error response from daemon: No such image: GB
 FATA[0009] Error: failed to remove one or more images 
 ```
 Excuse my awful bash scripting. The errors can be ignored.
+
+To list running containers: "docker ps"
+
+When you are finished with your container, you can kill it: "docker stop 19f"
