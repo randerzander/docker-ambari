@@ -23,6 +23,7 @@ bash-4.1#
 ```
 
 To instruct boot2docker to map all of your container's exposed ports to the same ports on your host machine's localhost:
+
 **Note**:  Expect to see errors for every port the first time you run this. The script is telling VirtualBox to delete port mappings between the boot2docker-vm and localhost, then create a new port-mapping for the new container.
 ```
 python scripts/portbind.py 19f4
