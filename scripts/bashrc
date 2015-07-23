@@ -3,6 +3,9 @@ PASS='admin'
 CLUSTER='dev'
 HOST=$(hostname -f):8080
 
+export JAVA_HOME=/usr/jdk64/jdk1.8.0_40
+export PATH=$JAVA_HOME/bin:$PATH
+
 function start(){
   curl -u $USER:$PASS -i -H 'X-Requested-By: ambari' -X PUT -d \
     '{"RequestInfo": {"context" :"Start '"$1"' via REST"}, "Body": {"ServiceInfo": {"state": "STARTED"}}}' \
@@ -81,12 +84,4 @@ function kerberos(){
   /etc/rc.d/init.d/kadmin start
   kadmin.local -q "addprinc -pw dev admin/admin"
   kadmin.local -q "addprinc -pw dev ranger/admin"
-}
-
-function zeppelin(){
-  cd /
-  tar -xzv spark.tgz
-  mv spark-* spark
-  export SPARK_HOME=/spark
-  tar -xzvf incubator-zeppelin.tgz
 }

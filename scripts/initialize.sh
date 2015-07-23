@@ -9,6 +9,8 @@ echo 'host all postgres,ranger,rangeradmin,rangerlogger 0.0.0.0/0 md5' >> /var/l
 echo 'host all postgres,ranger,rangeradmin,rangerlogger ::/0 md5' >> /var/lib/pgsql/data/pg_hba.conf
 
 while [ -z "$(netstat -tulpn | grep 8080)" ]; do
+  cd /usr/jdk64/jdk*/jre/lib/security/
+  unzip /var/lib/ambari-server/resources/jce_policy-*
   ambari-server start
   ambari-agent start
   sleep 30
