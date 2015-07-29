@@ -9,7 +9,7 @@ RUN ambari-server setup --jdbc-db=postgres --jdbc-driver=/usr/share/java/postgre
 # Kerberos support
 RUN yum install -y krb5-server krb5-libs krb5-auth-dialog krb5-workstation
 # HST tool
-RUN rpm -ivh /etc/yum.repos.d/hst.rpm
+#RUN rpm -ivh /etc/yum.repos.d/hst.rpm
 
 # pre-install HDP packages
 RUN yum install -y hadoop* zookeeper hbase_* phoenix_* ranger_* rpcbind storm_* kafka_* pig_* spark_* lzo snappy snappy-devel
@@ -27,8 +27,8 @@ EXPOSE 8000-8100
 EXPOSE 6080 19888 4040
 # Jupyter/Zeppelin
 EXPOSE 9990-9999
-# ZooKeeper, HBase, Kafka, Hive
-EXPOSE 6667 2181 10000
+# ZooKeeper, HBase, Kafka, Hive, Kylin
+EXPOSE 6667 2181 10000 7070
 
 # Starts ambari agent, server, sets up Postgres dbs
 RUN /scripts/initialize.sh
