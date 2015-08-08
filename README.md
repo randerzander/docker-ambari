@@ -82,4 +82,8 @@ To list running containers: "docker ps"
 
 When you are finished with your container, you can kill it: "docker stop 19f"
 
+*Networking Issues:*
+
+If you change networks on your host machine, the boot2docker VM wont pick up the changes. One fix is "boot2docker restart". This has the annoying side effect of stopping any running containers. To fix the networks within currently running containers *and* any new containers started before boot2docker-vm itself is restarted, edit /etc/resolv.conf and set nameserver's IP to your DNS server of choice (8.8.8.8 to use Google's, which usually works).
+
 Big thanks to the Hortonworks/SequenceIQ team. Their own [docker-ambari repo](https://github.com/sequenceiq/docker-ambari) was the basis for this effort.
