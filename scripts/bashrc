@@ -5,6 +5,7 @@ HOST=$(hostname -f):8080
 
 export JAVA_HOME=/usr/jdk64/jdk1.8.0_40
 export PATH=$JAVA_HOME/bin:$PATH
+export TERM=xterm-256color
 
 function start(){
   curl -u $USER:$PASS -i -H 'X-Requested-By: ambari' -X PUT -d \

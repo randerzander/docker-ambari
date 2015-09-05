@@ -87,3 +87,17 @@ When you are finished with your container, you can kill it: "docker stop 19f"
 If you change networks on your host machine, the boot2docker VM wont pick up the changes. One fix is "boot2docker restart". This has the annoying side effect of stopping any running containers. To fix the networks within currently running containers *and* any new containers started before boot2docker-vm itself is restarted, edit /etc/resolv.conf and set nameserver's IP to your DNS server of choice (8.8.8.8 to use Google's, which usually works).
 
 Big thanks to the Hortonworks/SequenceIQ team. Their own [docker-ambari repo](https://github.com/sequenceiq/docker-ambari) was the basis for this effort.
+
+Useful to include in ~/.bash_profile:
+```
+function dcp(){
+  local_file=$1
+  container_file=$2
+  container_id=$3
+  echo Copying $1 to $2 on docker container: $3
+  docker exec -i $container_id /bin/bash -c "cat > $container_file" < $local_file
+  echo Done!
+}
+```
+
+To copy files from host machine to your docker container: dcp local_file /docker/container/file container_id

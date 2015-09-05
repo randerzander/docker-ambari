@@ -12,7 +12,7 @@ RUN yum install -y krb5-server krb5-libs krb5-auth-dialog krb5-workstation
 #RUN rpm -ivh /etc/yum.repos.d/hst.rpm
 
 # pre-install HDP packages then remove the repo so they wont conflict with Ambari installed HDP repos
-RUN yum install -y hadoop* zookeeper hbase_* phoenix_* ranger* rpcbind storm_* kafka_* pig_* spark_* lzo snappy snappy-devel lucidworks-hdpsearch
+RUN yum install -y hadoop* zookeeper hbase_* phoenix_* ranger* rpcbind storm_* kafka_* pig_* spark_* lzo snappy snappy-devel
 RUN rm /etc/yum.repos.d/hdp*.repo
 
 # Setup networking
@@ -27,15 +27,14 @@ RUN sed -i "s/agent.task.timeout=900/agent.task.timeout=2000/" /etc/ambari-serve
 RUN /scripts/initialize.sh
 
 # End user setup -- customize as desired
-RUN /scripts/dev-setup.sh
-
-RUN cp /scripts/bashrc /root/.bashrc
-RUN cp /scripts/vimrc /root/.vimrc
-
-# End user may not want to expose everything below
-# Ambari and various UIs
-EXPOSE 8000-8100
-EXPOSE 6080 19888 4040
+# Ambari
+EXPOSE 8080
+# Zeppelin
+EXPOSE 8081
+# Ranger
+EXPOSE 6080
+# Spark
+EXPOSE 4040
 # Jupyter/Zeppelin
 EXPOSE 9990-9999
 # Kafka
@@ -51,7 +50,7 @@ EXPOSE 8888
 # MR
 EXPOSE 10020 19888 13562
 # YARN
-EXPOSE 8141 45454 10200 8188 8190 19888
+EXPOSE 8141 45454 10200 8188 8190 19888 8088
 # Hive
 EXPOSE 1000 9999 9933
 # Tez

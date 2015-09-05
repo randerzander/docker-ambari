@@ -1,2 +1,4 @@
 *.swp
 repos/hst.rpm
+*.conf
+*.forwarding
