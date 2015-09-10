@@ -81,7 +81,7 @@ If you change networks on your host machine, the docker-machine VM wont pick up 
 
 Big thanks to the Hortonworks/SequenceIQ team. Their own [docker-ambari repo](https://github.com/sequenceiq/docker-ambari) was the basis for this effort.
 
-Useful to include in ~/.bash_profile:
+Useful to include in host machine's ~/.bash_profile:
 ```
 function dcp(){
   local_file=$1
@@ -92,5 +92,10 @@ function dcp(){
   echo Done!
 }
 ```
-
 To copy files from host machine to your docker container: dcp local_file /docker/container/file container_id
+
+A sample terminal and dev env setup script is provided in /scripts/dev-setup.sh:
+```
+docker exec -it 19f bash
+./scripts/dev-setup.sh
+```
