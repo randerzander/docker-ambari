@@ -12,7 +12,7 @@ RUN yum install -y krb5-server krb5-libs krb5-auth-dialog krb5-workstation
 #RUN rpm -ivh /etc/yum.repos.d/hst.rpm
 
 # pre-install HDP packages then remove the repo so they wont conflict with Ambari installed HDP repos
-RUN yum install -y hadoop* zookeeper hbase_* phoenix_* ranger* rpcbind storm_* kafka_* pig_* spark_* lzo snappy snappy-devel
+RUN yum install -y hadoop* zookeeper hive_* hbase_* phoenix_* ranger* rpcbind storm_* kafka_* pig_* spark_* lzo snappy snappy-devel
 RUN rm /etc/yum.repos.d/hdp*.repo
 
 # Setup networking
