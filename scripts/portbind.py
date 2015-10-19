@@ -15,8 +15,8 @@ output, err = p.communicate()
 rc = p.returncode
 
 def run(command):
-  print command
-  call(command.split(' '))
+  try: call(command.split(' '))
+  except: print command + ': failed'
 
 for line in output.split('\n'):
   if len(line) > 0:

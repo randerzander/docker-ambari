@@ -39,7 +39,7 @@ VBoxManage: error: Context: "RemoveRedirect(Bstr(a->argv[3]).raw())" at line 523
 VBoxManage controlvm vmname natpf1 tcp9991,tcp,,9991,,32781
 ```
 
-You should now be able to access Ambari via docker.dev:8080 in your host machine's browser. Most HDP packages are pre-installed via yum, so cluster install time should be short. ambari-agent is already running, so use the manual host-registration radio button instead of keyless ssh. You can ignore the few host-check warnings you see during registration (those are artifacts of host OS-container kernel interaction).
+You should now be able to access Ambari via docker.dev:8080 in your host machine's browser. Most HDP packages are pre-installed via yum, so cluster install time should be short. ambari-agent is already running, so use the manual host-registration radio button instead of keyless ssh. You can ignore the few host-check warnings you see during registration (those are artifacts of host OS-container kernel interaction). If you use Hive in this container, Postgres is already configured for use as the metastore. Leave the settings as their defaults and use "dev" for the database password.
 
 You will want to customise the docker-machine VM settings - I set my VM to have 8 vcores and 8GB of RAM.
 
@@ -74,6 +74,13 @@ Excuse my awful bash scripting. The errors can be ignored.
 To list running containers: "docker ps"
 
 When you are finished with your container, you can kill it: "docker stop 19f"
+
+Or, if you'd like to save the state of your container as a new docker image:
+```
+docker commit container_name new_image_name
+```
+
+Then you can start a copy of the new image without having to go through the normal HDP cluster install process. You'll need to 'service ambari-agent restart' and tell Ambari to restart your services.
 
 **Networking Issues:**
 

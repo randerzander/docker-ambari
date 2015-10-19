@@ -2,7 +2,7 @@ FROM sequenceiq/dnsmasq:pam-fix
 
 # Setup Ambari
 ADD repos/* /etc/yum.repos.d/
-RUN yum install -y ambari-* sudo tar unzip wget curl postgresql-jdbc net-snmp net-snmp-utils
+RUN yum install -y ambari-* sudo tar unzip wget curl postgresql-jdbc net-snmp net-snmp-utils openssl-devel
 RUN ambari-server setup --silent
 RUN ambari-server setup --jdbc-db=postgres --jdbc-driver=/usr/share/java/postgresql-jdbc.jar
 
@@ -12,7 +12,7 @@ RUN yum install -y krb5-server krb5-libs krb5-auth-dialog krb5-workstation
 #RUN rpm -ivh /etc/yum.repos.d/hst.rpm
 
 # pre-install HDP packages then remove the repo so they wont conflict with Ambari installed HDP repos
-RUN yum install -y hadoop* zookeeper hive_* hbase_* phoenix_* ranger* rpcbind storm_* kafka_* pig_* spark_* lzo snappy snappy-devel
+RUN yum install -y hadoop* zookeeper hive_* hbase_* phoenix_* ranger* rpcbind storm_* kafka_* pig_* spark_* falcon_* oozie_* lzo snappy snappy-devel
 RUN rm /etc/yum.repos.d/hdp*.repo
 
 # Setup networking
@@ -65,6 +65,8 @@ EXPOSE 7070
 EXPOSE 88
 # Expose SSH if desired
 EXPOSE 22
+
+RUN /scripts/dev-setup.sh
 
 VOLUME /grid/0
 CMD ["/scripts/start-server.sh"]

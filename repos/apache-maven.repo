@@ -1,6 +1,0 @@
-[epel-apache-maven]
-name=maven from apache foundation.
-baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-$releasever/$basearch/
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
