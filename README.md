@@ -1,14 +1,14 @@
 **Note**: The guide below assumes you've already setup Docker in your environment. See [Docker Toolbox](http://docs.docker.com/mac/started/) install instructions for help.
 
-To build the dev23 container image (see the script in Dockerfile):
+To build the container image (see the script in Dockerfile):
 ```
-docker build -t dev23 .
+docker build -t randerzander/docker-ambari .
 ```
 
 To run the container image once built:
 ```
 # You can remove --privileged if you don't intend to use Kerberos
-docker run -d -P -h docker.dev --privileged dev23
+docker run -d -P -h docker.dev --privileged randerzander/docker-ambari
 19f4d657579d 
 ```
 The output of the "docker run" command will be a docker container identifier. You can refer to it in other docker commands using just the first 3 characters (avoids having to copy/paste or type the whole string).
@@ -18,7 +18,7 @@ To start a bash prompt inside the running container:
 docker ps
 randy$> docker ps
 CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS        NAMES
-19f4d657579d        dev23:latest        "/scripts/start-serv   14 minutes ago      Up 14 minutes       0.0.0.0:32872->2181/tcp, 0.0.0.0:32860->4040/tcp, 0.0.0.0:32845->6080/tcp, .....
+19f4d657579d        randerzander/docker-ambari:latest        "/scripts/start-serv   14 minutes ago      Up 14 minutes       0.0.0.0:32872->2181/tcp, 0.0.0.0:32860->4040/tcp, 0.0.0.0:32845->6080/tcp, .....
 randy$> docker exec -it 19f bash
 bash-4.1# 
 ```
