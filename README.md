@@ -1,3 +1,6 @@
+***This is a dead project. Use [docker-hdp](https://github.com/randerzander/docker-hdp) instead. ***
+
+
 **Note**: The guide below assumes you've already setup Docker in your environment. See [Docker Toolbox](http://docs.docker.com/mac/started/) install instructions for help.
 
 To build the container image (see the script in Dockerfile):
